@@ -20,17 +20,20 @@ class UserController extends Controller
         // ];
         // UserModel::insert($data);
 
-        $data = [
-            'level_id' => 2,
-            'username' => 'manager_tiga',
-            'nama' => 'manager 3',
-            'password' => Hash::make('12345')
-        ];
+        // $data = [
+        //     'level_id' => 2,
+        //     'username' => 'manager_tiga',
+        //     'nama' => 'manager 3',
+        //     'password' => Hash::make('12345')
+        // ];
 
-        $user = UserModel::create($data);
+        // $user = UserModel::create($data);
 
 
-        $user = UserModel::all();
+        // $user = UserModel::all();
+        $user = UserModel::findOr(20, ['username', 'nama'], function () {
+            abort(404);
+        });
         return view('user.user', ['data' => $user]);
     }
 }
