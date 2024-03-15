@@ -59,19 +59,19 @@ class UserController extends Controller
         // );
         // $user->save();
 
-        $user = UserModel::create(
-            [
-                'username' => 'manager25',
-                'nama' => 'Manager25',
-                'password' => Hash::make('12345'),
-                'level_id' => 2
-            ]
-        );
+        // $user = UserModel::create(
+        //     [
+        //         'username' => 'manager25',
+        //         'nama' => 'Manager25',
+        //         'password' => Hash::make('12345'),
+        //         'level_id' => 2
+        //     ]
+        // );
 
-        $user->username = 'manager35';
+        // $user->username = 'manager35';
 
 
-        dd($user->wasChanged(['nama', 'username']));
+        // dd($user->wasChanged(['nama', 'username']));
 
         // $user->isDirty();
         // $user->isDirty('username');
@@ -89,7 +89,51 @@ class UserController extends Controller
         // $user->isClean();
 
         // dd($user->isDirty());
-
+        $user = UserModel::all();
         return view('user.user', ['data' => $user]);
+    }
+
+    public function tambah()
+    {
+        return view('user.userTambah');
+    }
+
+    public function tambah_simpan(Request $request)
+    {
+        UserModel::create(
+            [
+                'username' => $request->username,
+                'nama' => $request->nama,
+                'password' => Hash::make('$request->password'),
+                'level_id' => $request->level_id
+            ]
+        );
+        return redirect('/user');
+    }
+
+    public function ubah($id)
+    {
+        $user = UserModel::find($id);
+        return view('user.userUbah', ['data' => $user]);
+    }
+
+    public function ubah_simpan($id, Request $request)
+    {
+        $user = UserModel::find($id);
+
+        $user->username = $request->username;
+        $user->nama = $request->nama;
+        $user->password = Hash::make($request->password);
+        $user->level_id = $request->level_id;
+
+        $user->save();
+        return redirect('/user');
+    }
+    public function hapus($id)
+    {
+        $user = UserModel::find($id);
+
+        $user->delete();
+        return redirect('/user');
     }
 }
