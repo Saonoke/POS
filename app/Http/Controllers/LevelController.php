@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LevelRequest;
 use Illuminate\Http\Request;
 use DB;
 
@@ -33,6 +34,14 @@ class LevelController extends Controller
         $data = DB::select('select * from m_level');
 
         return view('level.level', ['data' => $data]);
+    }
+
+    public function store(LevelRequest $request)
+    {
+        $request->validated();
+
+        return redirect('/kategori');
+
     }
 
 

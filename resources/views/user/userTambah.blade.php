@@ -8,7 +8,15 @@
 </head>
 <body>
     <h1>Form tambah data user</h1>
-
+ @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
     <form method="POST" action="/user/tambah_simpan">
     {{ csrf_field() }}
     <label for="">username</label>

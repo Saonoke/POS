@@ -90,7 +90,7 @@ class UserController extends Controller
 
         // dd($user->isDirty());
         $user = UserModel::with('level')->get();
-        dd($user);
+
         return view('user.user', ['data' => $user]);
     }
 
@@ -101,6 +101,16 @@ class UserController extends Controller
 
     public function tambah_simpan(Request $request)
     {
+        $request->validate(
+            [
+                "username" => 'required',
+                "name" => 'required',
+                "password" => 'required',
+                "level_id" => 'required',
+
+            ]
+        );
+
         UserModel::create(
             [
                 'username' => $request->username,

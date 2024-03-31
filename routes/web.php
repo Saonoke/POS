@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\POSController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KategoriController;
@@ -19,7 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::prefix('category')->group(function () {
     Route::get('food-beverage', [ProductController::class, 'foodBeverage']);
@@ -29,11 +32,28 @@ Route::prefix('category')->group(function () {
 
 });
 
+Route::get('/coba', function () {
+    return view('form.coba');
+});
+
+// form
+
+Route::get('/m_user-form', function () {
+    return view('form.m_user');
+});
+Route::get('/m_level-form', function () {
+    return view('form.m_level');
+});
+
+
+// end form
+
 Route::get('/user/{id}/name/{name}', [UserController::class, 'user']);
 
 Route::get('/penjualan', [PenjualanController::class, 'index']);
 
 Route::get('/level', [LevelController::class, 'index']);
+Route::post('/level/tambah', [LevelController::class, 'store']);
 Route::get('/kategori', [KategoriController::class, 'index']);
 Route::get('/user', [UserController::class, 'index']);
 
@@ -43,3 +63,16 @@ Route::post('/user/tambah_simpan', [UserController::class, 'tambah_simpan']);
 Route::get('/user/ubah/{id}', [UserController::class, 'ubah']);
 Route::put('user/ubah_simpan/{id}', [UserController::class, 'ubah_simpan']);
 Route::get('user/hapus/{id}', [UserController::class, 'hapus']);
+
+
+// kategori
+Route::get('/kategori/create', [KategoriController::class, 'create']);
+Route::post('/kategori', [KategoriController::class, 'store'])->name('create');
+Route::get('/kategori/{id}', [KategoriController::class, 'edit'])->name('updateview');
+Route::put('/kategori/update/{id}', [KategoriController::class, 'update'])->name('update');
+Route::get('/kategori/hapus/{id}', [KategoriController::class, 'delete'])->name('delete');
+
+
+// POS
+Route::resource('m_user', POSController::class);
+
