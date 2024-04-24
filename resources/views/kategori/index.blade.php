@@ -1,8 +1,4 @@
-@extends('layout.app')
-
-@section('subtitle','Welcome')
-@section('content_header_title','Home')
-@section('content_header_subtitle','Kategori')
+@extends('layout.template')
 
 @section('content')
     <div class="container">
@@ -18,6 +14,13 @@
     </div>
 @endsection
 
-@push('scripts')
+@push('css')
+    
+   <link rel="stylesheet"
+   href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.css" />
+@endpush
+
+@push('js')
+<script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
     {{$dataTable->scripts()}}
 @endpush

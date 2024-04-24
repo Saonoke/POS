@@ -39,7 +39,20 @@ class KategoriController extends Controller
 
     public function index(KategoriDataTable $dataTable)
     {
-        return $dataTable->render('kategori.index');
+        $breadcrumb = (object) [
+            'title' => 'Home Kategori',
+            'list' => ['Home', 'Kategori']
+        ];
+
+        $page = (object) [
+
+            'title' => 'Home Kategori'
+
+        ];
+
+
+        $activeMenu = 'kategori';
+        return $dataTable->render('kategori.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
     }
 
     public function delete($id)
@@ -52,14 +65,40 @@ class KategoriController extends Controller
 
     public function create()
     {
-        return view('kategori.create');
+        $breadcrumb = (object) [
+            'title' => 'Tambah Kategori',
+            'list' => ['Home', 'Kategori', 'Tambah']
+        ];
+
+        $page = (object) [
+
+            'title' => 'Tambah Kategori'
+
+        ];
+
+
+        $activeMenu = 'kategori';
+        return view('kategori.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
     }
 
     public function edit($id)
     {
         $data = KategoriModel::find($id);
+        $breadcrumb = (object) [
+            'title' => 'Edit Kategori',
+            'list' => ['Home', 'Kategori', 'Edit']
+        ];
 
-        return view('kategori.edit', ['data' => $data]);
+        $page = (object) [
+
+            'title' => 'Edit Kategori'
+
+        ];
+
+
+        $activeMenu = 'kategori';
+
+        return view('kategori.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu, 'data' => $data]);
     }
 
     public function update(Request $request, $id)
@@ -77,20 +116,16 @@ class KategoriController extends Controller
 
     public function store(StorePostRequest $request)
     {
-        $validated = $request->validated();
-
-        $validated = $request->safe()->only(['kategori_kode', 'kategori_nama']);
-        $validated = $request->safe()->except(['kategori_kode', 'kategori_nama']);
-
+        $request->validated();
 
         KategoriModel::create(
             [
-                'kategori_kode' => $request->kodeKategori,
-                'kategori_nama' => $request->namaKategori
+                'kategori_kode' => $request->kategori_kode,
+                'kategori_nama' => $request->kategori_nama
             ]
 
         );
-        return redirect('/kategori');
+        return redirect('/kategori')->with('success', 'data berhasil ditambah');
 
     }
 

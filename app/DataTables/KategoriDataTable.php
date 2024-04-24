@@ -25,8 +25,16 @@ class KategoriDataTable extends DataTable
         return (new EloquentDataTable($query))
             // ->addColumn('action', 'kategori.action')
             ->addColumn('action', function ($kategori) {
-                return '<a href="' . route('updateview', $kategori->kategori_id) . '"class="btn btn-primary">Edit </a>
-                    <a href="' . route('delete', $kategori->kategori_id) . '" class= "btn btn-danger"> Delete </a>';
+                $btn = '<a href="' . url('/kategori/' . $kategori->kategori_id) . '" class="btn btn-info btn-sm">Detail</a> ';
+                $btn .= '<a href="' . url('/kategori/' . $kategori->kategori_id) . '"
+class="btn btn-warning btn-sm">Edit</a> ';
+                $btn .= '<form class="d-inline-block" method="POST" action="' .
+                    url('/kategori/' . $kategori->kategori_id) . '">'
+                    . csrf_field() . method_field('DELETE') .
+                    '<button type="submit" class="btn btn-danger btn-sm"
+onclick="return confirm(\'Apakah Anda yakin menghapus data
+ini?\');">Hapus</button></form>';
+                return $btn;
             })
             ->setRowId('id');
     }
@@ -51,15 +59,15 @@ class KategoriDataTable extends DataTable
             ->minifiedAjax()
             //->dom('Bfrtip')
             ->orderBy(1)
-            ->selectStyleSingle()
-            ->buttons([
-                Button::make('excel'),
-                Button::make('csv'),
-                Button::make('pdf'),
-                Button::make('print'),
-                Button::make('reset'),
-                Button::make('reload')
-            ]);
+            ->selectStyleSingle();
+        //         ->buttons([
+        //             Button::make('excel'),
+        //             Button::make('csv'),
+        //             Button::make('pdf'),
+        //             Button::make('print'),
+        //             Button::make('reset'),
+        //             Button::make('reload')
+        //         ]);
     }
 
     /**

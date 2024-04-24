@@ -1,8 +1,4 @@
-@extends('layout.app')
-
-@section('subtitle','Kategori')
-@section('content_header_title','kategori')
-@section('content_header_subtitle','create')
+@extends('layout.template')
 
 @section('content')
     <div class="container">
@@ -25,7 +21,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="kodeKategori">Kode Kategori</label>
-                        <input type="text" name="kodeKategori" placeholder="kode kategori" id="kodeKategori" class="@error('kategori_kode') is-invalid @enderror" >
+                        <input type="text" name="kategori_kode" placeholder="kode kategori" id="kodeKategori" class="@error('kategori_kode') is-invalid @enderror" >
 
                         @error('kategori_kode')
                             <div class="alert alert-danger">{{$message}}</div>
@@ -33,7 +29,7 @@
                     </div>
                     <div class="form-group">
                         <label for="namaKategori">Nama Kategori</label>
-                        <input type="text" name="namaKategori" placeholder="nama kategori" id="">
+                        <input type="text" name="kategori_nama" placeholder="nama kategori" id="">
                     </div>
 
                 </div>

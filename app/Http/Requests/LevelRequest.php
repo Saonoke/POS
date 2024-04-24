@@ -35,4 +35,6 @@ class LevelRequest extends FormRequest
             'level_nama.required' => 'A message is required',
         ];
     }
+
+    
 }

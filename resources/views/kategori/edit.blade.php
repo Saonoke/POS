@@ -1,8 +1,5 @@
-@extends('layout.app')
+@extends('layout.template')
 
-@section('subtitle','Kategori')
-@section('content_header_title','kategori')
-@section('content_header_subtitle','update')
 
 @section('content')
 
