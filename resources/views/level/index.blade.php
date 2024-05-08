@@ -17,8 +17,7 @@
     @endif
 
 
-<table class="table table-bordered table-striped table-hover table-sm"
-id="table_user">
+<table class="table table-bordered table-striped table-hover table-sm" id="table_user">
 <thead>
 <tr><th>ID</th><th>Level Kode</th><th>Level
 Nama</th><th>Aksi</th></tr>
@@ -47,16 +46,23 @@ className: "text-center",
 orderable: false,
 searchable: false
 },{
-data: "level_kode",
+data: "id_penduduk",
 className: "",
 orderable: true, // orderable: true, jika ingin kolom ini bisadiurutkan
 searchable: true // searchable: true, jika ingin kolom ini bisadicari
 },{
-data: "level_nama",
+data: "tgl_surat",
 className: "",
 orderable: false, // orderable: true, jika ingin kolom ini bisadiurutkan
 searchable: false // searchable: true, jika ingin kolom ini bisa dicari
-},{
+},
+{
+data: "tujuan",
+className: "",
+orderable: false, // orderable: true, jika ingin kolom ini bisadiurutkan
+searchable: false // searchable: true, jika ingin kolom ini bisa dicari
+},
+{
 data: "aksi",
 className: "",
 orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan

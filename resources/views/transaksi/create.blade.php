@@ -61,9 +61,6 @@
     </div>
     </div>
 
-  
-
-
 
     <button type="button" onclick="tambahBarang()"  class="btn btn-primary" >Tambah Barang +</button>
 

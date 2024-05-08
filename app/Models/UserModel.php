@@ -17,6 +17,17 @@ class UserModel extends Authenticatable
     protected $fillable = ['level_id', 'username', 'nama', 'password'];
     protected $guarded = [];
 
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
     public function level(): BelongsTo
     {
         return $this->belongsTo(LevelModel::class, 'level_id');
