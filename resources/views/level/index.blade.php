@@ -46,22 +46,17 @@ className: "text-center",
 orderable: false,
 searchable: false
 },{
-data: "id_penduduk",
+data: "level_kode",
 className: "",
 orderable: true, // orderable: true, jika ingin kolom ini bisadiurutkan
 searchable: true // searchable: true, jika ingin kolom ini bisadicari
 },{
-data: "tgl_surat",
+data: "level_nama",
 className: "",
 orderable: false, // orderable: true, jika ingin kolom ini bisadiurutkan
 searchable: false // searchable: true, jika ingin kolom ini bisa dicari
 },
-{
-data: "tujuan",
-className: "",
-orderable: false, // orderable: true, jika ingin kolom ini bisadiurutkan
-searchable: false // searchable: true, jika ingin kolom ini bisa dicari
-},
+
 {
 data: "aksi",
 className: "",
